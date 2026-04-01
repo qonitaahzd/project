@@ -2,8 +2,8 @@
 require_once 'Pembayaran.php';
 require_once 'Cetak.php';
 
-#Penggunaan Class Ewallet
-class EWallet extends Pembayaran implements Cetak {
+// Penggunaan Class Ewallet
+class Ewallet extends Pembayaran implements Cetak {
 
     public function prosesPembayaran() {
         if ($this->validasi()) {

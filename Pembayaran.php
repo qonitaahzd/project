@@ -1,5 +1,5 @@
 <?php
-#Penggunaan Abstrak Class
+#Penggunaan Abstract Class
 abstract class Pembayaran {
     protected $jumlah;
 
