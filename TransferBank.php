@@ -3,7 +3,7 @@ require_once 'Pembayaran.php';
 require_once 'Cetak.php';
 
 #Penggunaan Class Transfer Bank dari Extend
-class TransferBank extends Pembayaran implements Cetak {
+class TransferBank extends Pembayaran implements cetak {
 
     public function prosesPembayaran() {
         if ($this->validasi()) {
