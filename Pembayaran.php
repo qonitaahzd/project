@@ -1,5 +1,4 @@
 <?php
-#Penggunaan Abstract Class
 abstract class Pembayaran {
     protected $jumlah;
 
@@ -7,12 +6,18 @@ abstract class Pembayaran {
         $this->jumlah = $jumlah;
     }
 
-    // method wajib
-    abstract public function prosesPembayaran();
-
-    // method umum
-    public function validasi() {
+    protected function validasi() {
         return $this->jumlah > 0;
     }
+
+    protected function hitungDiskon() {
+        return $this->jumlah * 0.10;
+    }
+
+    protected function hitungPajak($afterDiskon) {
+        return $afterDiskon * 0.11;
+    }
+
+    abstract public function prosesPembayaran();
 }
 ?>

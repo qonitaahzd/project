@@ -2,18 +2,24 @@
 require_once 'Pembayaran.php';
 require_once 'Cetak.php';
 
-// Penggunaan Class Qris
-class Qris extends Pembayaran implements Cetak {
-
+class QRIS extends Pembayaran implements Cetak {
     public function prosesPembayaran() {
         if ($this->validasi()) {
-            return "Pembayaran Qris Rp {$this->jumlah} berhasil";
+            $diskon = $this->hitungDiskon();
+            $afterDiskon = $this->jumlah - $diskon;
+            $pajak = $this->hitungPajak($afterDiskon);
+            $total = $afterDiskon + $pajak;
+
+            return "QRIS: Rp " . number_format($this->jumlah) .
+                " - Diskon: Rp " . number_format($diskon) .
+                " + Pajak: Rp " . number_format($pajak) .
+                " = Total: Rp " . number_format($total);
         }
         return "Jumlah tidak valid";
     }
 
     public function cetakStruk() {
-        return "Struk Qris: Rp {$this->jumlah}";
+        return "Struk QRIS berhasil.";
     }
 }
 ?>
