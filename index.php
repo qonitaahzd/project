@@ -87,6 +87,8 @@
       <option value="transfer">Transfer Bank</option>
       <option value="ewallet">E-Wallet</option>
       <option value="qris">QRIS</option>
+      <option value="cod">COD</option>
+      <option value="va">Virtual Account</option>
     </select>
 
     <label>Jumlah (Rp)</label>
@@ -100,6 +102,8 @@
     require_once 'TransferBank.php';
     require_once 'Ewallet.php';
     require_once 'Qris.php';
+    require_once 'COD.php';
+    require_once 'VirtualAccount.php';
 
     $jumlah = $_POST['jumlah'];
     $metode = $_POST['metode'];
@@ -108,10 +112,13 @@
       $obj = new TransferBank($jumlah);
     } elseif ($metode == 'ewallet') {
       $obj = new Ewallet($jumlah);
-    } else {
+    } elseif ($metode == 'QRIS') {
       $obj = new QRIS($jumlah);
+    } elseif ($metode == 'COD') {
+      $obj = new COD($jumlah);
+    } else {
+      $obj = new VirtualAccount($jumlah);
     }
-
     echo "<div class='result' style='display:block;'>";
     echo $obj->prosesPembayaran();
     echo "<br>";
